@@ -1,4 +1,5 @@
 import sys
+import socket
 
 from threading import Lock
 
@@ -6,6 +7,10 @@ from threading import Lock
 LEVELS = ["none", "error", "warning", "info"]
 FORMAT = "[{level}][{module}] {msg}\n"
 
+host = '10.1.10.151'
+port = 5555;
+
+s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
 class Logger(object):
     def __init__(self):
@@ -34,11 +39,12 @@ class Logger(object):
         msg = str(msg).format(*args, **kwargs)
 
         with self.lock:
-            self.output.write(FORMAT.format(module=module,
-                                            level=LEVELS[level],
-                                            msg=msg))
-            if hasattr(self.output, "flush"):
-                self.output.flush()
+            s.sendto(msg,(host,port))
+#            self.output.write(FORMAT.format(module=module,
+#                                            level=LEVELS[level],
+#                                            msg=msg))
+#            if hasattr(self.output, "flush"):
+#                self.output.flush()
 
 
 class LoggerModule(object):
