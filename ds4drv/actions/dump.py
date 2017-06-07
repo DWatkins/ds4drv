@@ -9,7 +9,7 @@ class ReportActionDump(ReportAction):
 
     def __init__(self, *args, **kwargs):
         super(ReportActionDump, self).__init__(*args, **kwargs)
-        self.timer = self.create_timer(0.02, self.dump)
+        self.timer = self.create_timer(0.5, self.dump)
 
     def enable(self):
         self.timer.start()
@@ -27,7 +27,7 @@ class ReportActionDump(ReportAction):
         dump = "Report dump\n"
         for key in report.__slots__:
             value = getattr(report, key)
-            dump += "    {0}: {1}\n".format(key, value)
+            dump += "{0},".format(value)
 
         self.logger.info(dump)
 
