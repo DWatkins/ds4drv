@@ -9,7 +9,7 @@ class ReportActionDump(ReportAction):
 
     def __init__(self, *args, **kwargs):
         super(ReportActionDump, self).__init__(*args, **kwargs)
-        self.timer = self.create_timer(0.5, self.dump)
+        self.timer = self.create_timer(0.05, self.dump)
 
     def enable(self):
         self.timer.start()
