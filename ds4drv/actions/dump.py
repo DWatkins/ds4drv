@@ -24,7 +24,7 @@ class ReportActionDump(ReportAction):
             self.disable()
 
     def dump(self, report):
-        dump = "Report dump\n"
+        dump = ""
         for key in report.__slots__:
             value = getattr(report, key)
             dump += "{0},".format(value)

@@ -8,6 +8,7 @@ LEVELS = ["none", "error", "warning", "info"]
 FORMAT = "[{level}][{module}] {msg}\n"
 
 host = '127.0.0.1'
+#host = '10.1.10.151'
 port = 5555;
 
 s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
@@ -36,7 +37,7 @@ class Logger(object):
         if self.level < level or level > len(LEVELS):
             return
 
-        msg = str(msg).format(*args, **kwargs)
+#        msg = str(msg).format(*args, **kwargs)
 
         with self.lock:
             s.sendto(msg,(host,port))
