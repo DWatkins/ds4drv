@@ -1,4 +1,5 @@
 from ..action import ReportAction
+import socket
 
 ReportAction.add_option("--dump-reports", action="store_true",
                         help="Prints controller input reports")
